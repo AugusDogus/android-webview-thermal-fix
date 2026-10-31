@@ -7,7 +7,7 @@ On-device validation is pending. Source is available for review; the downloadabl
 ## Pending device validation
 
 1. Reconnect the PX6 head unit running Hal9k Mod 5.0.0 and Android 10.
-2. Install official Morphe Manager 2.3.0. Confirm it starts and obtains Magisk root.
+2. Official Morphe Manager 2.3.0 is installed and its version verified on the test unit. Confirm it starts and obtains Magisk root.
 3. Preserve the stock WebView backup and the working prototype module. Disable/unmount the prototype before testing Manager so two modules do not mount over the same package. Confirm the original WebView hash is visible again.
 4. Import this bundle as a local patch source. Select the original `com.google.android.webview` 156.0.8078.48 APK and enable **WebView: tolerate missing thermal service**.
 5. Patch in Manager. Inspect the output for both rewritten thermal calls and valid APK/native-library alignment.

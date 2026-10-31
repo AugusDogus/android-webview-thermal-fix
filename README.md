@@ -75,7 +75,7 @@ When the service is absent, listener registration is skipped and the status quer
 - Tested two fresh Spotify launches after mounting. Home and library loaded, login was preserved, and the compatibility handler logged execution without the original fatal exception.
 - Executed the original boot script twice successfully without rebooting. **A physical reboot has not been tested.**
 - Rebuilt the bundle against current Morphe patcher **2.1.0** using Desktop **1.20.0**. The current patcher successfully applied it to the actual WebView manifest and DEX recovered from the stock backup, and both rewritten call sites were inspected again. The interrupted APK copy is not a complete installable APK.
-- Manager **2.3.0** has been downloaded from its official release and its APK signature and minimum Android version inspected. It has **not** yet been installed or used to patch this head unit.
+- Official Manager **2.3.0** has been installed on the head unit, and its installed version was verified. The current bundle was transferred and its checksum verified. Importing, patching, and root installation through Manager have **not** yet been tested.
 - The public staging script adds portable package-path discovery and preflight checks. Its new installation path has not been exercised on a second head unit.
 
 ## Development
