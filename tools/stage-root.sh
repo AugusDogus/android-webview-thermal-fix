@@ -11,9 +11,11 @@ case "$stock" in
     *) echo 'Expected a single WebView base APK under /data/app; installation stopped.'; exit 1 ;;
 esac
 [ "$(printf '%s\n' "$stock" | wc -l)" -eq 1 ] || { echo 'Split WebView APKs are unsupported.'; exit 1; }
-expected=d31986dfbf12ebda43d7da44c9b6b78cf6ae21203d5b068f30cc07606e1f4cc5
 actual=$(sha256sum "$stock" | cut -d ' ' -f 1)
-[ "$actual" = "$expected" ] || { echo 'Stock WebView changed. Installation stopped.'; exit 1; }
+case "$actual" in
+    d31986dfbf12ebda43d7da44c9b6b78cf6ae21203d5b068f30cc07606e1f4cc5|10bc3a9c4a97e184a4b55dac8090b670cd1b6b16a365090b45c2947457fd99a7) expected=$actual ;;
+    *) echo 'Unsupported stock WebView checksum. Installation stopped.'; exit 1 ;;
+esac
 [ ! -e "$module" ] || { echo 'Module directory already exists. Installation stopped.'; exit 1; }
 [ -s "$source_dir/patched.apk" ] || { echo 'Place the locally generated patched.apk alongside this script first.'; exit 1; }
 for name in apply-root.sh rollback-root.sh service.sh module.prop; do

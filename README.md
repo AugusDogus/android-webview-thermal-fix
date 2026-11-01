@@ -35,7 +35,7 @@ On the affected unit, the result is `Service thermalservice: not found`. A missi
 - Base firmware date: March 11, 2021. Reported security patch: May 5, 2020.
 - MCU: `MTCE_HA_V3.57_1`. Included for identification, not established as a cause of this Android service failure.
 - Root: Magisk **22.1**.
-- WebView: `com.google.android.webview` **156.0.8078.48**, single APK.
+- WebView: `com.google.android.webview` **156.0.8078.48**, single APK. The matching **156.0.8078.49** variant has also been patched and mounted after an update; fresh playback verification is pending. See [the recurrence and repair notes](docs/WEBVIEW-49-REPAIR.md).
 - Stock APK SHA-256: `d31986dfbf12ebda43d7da44c9b6b78cf6ae21203d5b068f30cc07606e1f4cc5`.
 
 These are the device's reported identifiers. Other Hal9k versions, stock HCT firmware, other CPU architectures, split APKs, and other WebView versions have not been validated. A matching ROM name alone does not establish compatibility. The supplied scripts refuse a different APK checksum.

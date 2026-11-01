@@ -8,12 +8,11 @@ project=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
 stock=$(realpath -- "$1")
 output=$(realpath -m -- "$2")
 [[ ! -e "$output" ]] || { echo 'Output exists; no files changed.' >&2; exit 1; }
-expected=d31986dfbf12ebda43d7da44c9b6b78cf6ae21203d5b068f30cc07606e1f4cc5
 actual=$(sha256sum "$stock" | cut -d ' ' -f 1)
-[[ "$actual" == "$expected" ]] || {
-  echo 'Unsupported stock APK. This release requires the exact tested WebView 156.0.8078.48 variant. Do not bypass this check.' >&2
-  exit 1
-}
+case "$actual" in
+  d31986dfbf12ebda43d7da44c9b6b78cf6ae21203d5b068f30cc07606e1f4cc5|10bc3a9c4a97e184a4b55dac8090b670cd1b6b16a365090b45c2947457fd99a7) ;;
+  *) echo 'Unsupported stock APK. Only the recorded WebView 156.0.8078.48 and .49 variants are accepted. Do not bypass this check.' >&2; exit 1 ;;
+esac
 work=$(mktemp -d)
 trap 'rm -rf -- "$work"' EXIT
 cd -- "$project"

@@ -27,7 +27,7 @@ val thermalCompatibilityPatch = bytecodePatch(
         name = "Android System WebView",
         packageName = "com.google.android.webview",
         apkFileType = ApkFileType.APK,
-        targets = listOf(AppTarget(version = "156.0.8078.48")),
+        targets = listOf(AppTarget(version = "156.0.8078.48"), AppTarget(version = "156.0.8078.49")),
     ))
     extendWith("extensions/thermal-compatibility.dex")
     execute {

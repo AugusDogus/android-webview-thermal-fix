@@ -16,7 +16,7 @@ adb shell dumpsys package com.google.android.webview | grep versionName
 adb shell pm path com.google.android.webview
 ```
 
-There must be one `package:/data/app/.../base.apk` result and version `156.0.8078.48`. Pull that exact path, substituting the output from the previous command:
+There must be one `package:/data/app/.../base.apk` result and version `156.0.8078.48` or `156.0.8078.49`. The .49 patch is mounted on the test device, but fresh playback verification is pending; see [repair status](WEBVIEW-49-REPAIR.md). Pull that exact path, substituting the output from the previous command:
 
 ```sh
 mkdir -p build/local
@@ -24,11 +24,13 @@ adb pull '/data/app/REPLACE_WITH_ACTUAL_DIRECTORY/base.apk' build/local/stock.ap
 sha256sum build/local/stock.apk
 ```
 
-The checksum must be:
+For .48, the checksum must be:
 
 ```text
 d31986dfbf12ebda43d7da44c9b6b78cf6ae21203d5b068f30cc07606e1f4cc5
 ```
+
+For .49, it must be `10bc3a9c4a97e184a4b55dac8090b670cd1b6b16a365090b45c2947457fd99a7`.
 
 Stop on a mismatch. Another architecture, version, or an already-mounted patch needs separate review. Do not weaken the checksum checks. Keep this unmodified backup outside the device too.
 
