@@ -24,3 +24,25 @@ The device viewer failed twice despite its prescribed refresh, and the Spotify r
 Per-app WebView auto-update remains unchanged because the UI became unavailable. Another WebView update can replace the patched path again. Future versions require a newly validated patch; do not silently mount .49 over a different version. Avoid pinning WebView indefinitely. Manager installation and reboot/suspend testing also remain pending.
 
 The original full .49 APK is backed up on-device, not yet off-device. The interrupted compressed transfer was discarded; local code-only archives are not full APK backups.
+
+## WebView .48 restored after startup, 2026-11-01
+
+After the next vehicle startup, PackageManager reported .48 at a different APK
+path. The .49 module refused to mount, recording `WebView updated; patch not
+mounted. Repatch the new version.` The reason the installed version returned to
+.48 has not been established. Qute (`com.ddm.qute`) and Gmail crashed in the same
+missing-thermal-service calls, independently of the launcher.
+
+The installed .48 APK matched the original stock SHA-256 above in the main README.
+The saved .48 patched APK matched
+`94f67ef7ab021c296df895d644be2d93bc8f12565518f8a251a6a0d720dff5d6`.
+The .49 module was backed up outside Magisk's active modules directory, then the
+verified .48 patch and checksum files were restored with the current package path.
+The mount script succeeded in global and zygote namespaces, and the installed
+path read back with the patched checksum. Original APK bytes and app data remain
+preserved.
+
+A fresh Qute launch reached its welcome screen and stayed alive. Its process
+logged the compatibility handler instead of the thermal exception. No agreement
+was accepted and no terminal command was executed in Qute. This verifies Qute
+startup after the repair, not a physical reboot or future WebView updates.
